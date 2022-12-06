@@ -1,0 +1,67 @@
+﻿@model IEnumerable<webdoan.Areas.Admin.Models.Products>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<main int id="main" class="main">
+    <div class="pagetitle">
+        <h2>Danh sách sản phẩm</h2>
+    </div>
+    <p>
+        <a type="button" class="btn btn-success" asp-area="Admin" asp-controller="AdminProducts" asp-action="Create">
+            <i class="bi bi-file-earmark-text me-1"></i> Thêm sản phẩm
+        </a>
+    </p>
+    <section class="section dashboard">
+        <div class="row">
+            <div class="col-12">
+                <div class="card recent-sales overflow-auto">
+                    <div class="card-body mt-4">
+                        <table class="table table-borderless datatable">
+                            <thead>
+                                <tr>
+                                    <th class="col-1 text-center">#</th>
+                                    <th class="col-3 text-center">Tên sản phẩm</th>
+                                    <td class="col-2 text-center">Giá</td>
+                                    <td class="col-2 text-center">Đang còn</td>
+                                    <td class="col-1 text-center">Danh mục</td>
+                                    <td class="col-1 text-center">Hiển thị</td>
+                                    <th class="col-2 text-center">Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th class="text-center" scope="row">@item.ProductId</th>
+                                        <td>
+                                            <a asp-area="Admin" asp-controller="AdminProducts" asp-action="Details"
+                                           asp-route-id="@item.ProductId" class="text-primary">@item.ProductName</a>
+                                        </td>
+                                        <td class="text-center">@item.Price</td>
+                                        <td class="text-center">@item.Discount</td>
+                                        <td class="text-center">@item.CatId</td>
+                                        <td class="text-center">@item.Active</td>
+                                        <td class="text-center">
+                                            <a asp-area="Admin" asp-controller="AdminProducts" asp-action="Details"
+                                           asp-route-id="@item.ProductId" class="btn btn-primary btn-sm"
+                                           title="chi tiết"><i class="ri-apps-2-line"></i></a>
+                                            <a asp-area="Admin" asp-controller="AdminProducts" asp-action="Edit"
+                                           asp-route-id="@item.ProductId" class="btn btn-primary btn-sm"
+                                           title="Sửa nội dung bài viết"><i class="bi bi-pencil"></i></a>
+                                            <a asp-area="Admin" asp-controller="AdminProducts" asp-action="Delete"
+                                           asp-route-id="@item.ProductId" class="btn btn-danger btn-sm"
+                                           title="Xóa thông tin bài viết"><i class="bi bi-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</main>

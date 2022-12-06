@@ -1,0 +1,115 @@
+﻿@model webdoan.Models.Post
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section Styles{
+    <link href="~/Adminassets/summernote/summernote-bs4.css" rel="stylesheet" />
+    <link href="~/Adminassets/summernote/summernote.css" rel="stylesheet" />
+}
+
+
+<main int id="main" class="main">
+    <div class="pagetitle">
+        <h2>Xác nhận sửa post</h2>
+    </div>
+    <div class="container shadow p-5">
+        <div class="row pb-2">
+            <h2>Sửa post</h2>
+        </div>
+
+        <form asp-controller="Post" asp-action="Edit" asp-route-id="@Model.PostID" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All"></div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Title">Title</label>
+                    <input type="text" class="form-control mb-3" asp-for="Title" placeholder="Nhập tên Post">
+                    <span asp-validation-for="Title" class=" alert-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Abstract">Abstract</label>
+                    <input type="text" class="form-control mb-3" asp-for="Abstract" placeholder="Enter Abstract">
+                    <span asp-validation-for="Abstract" class=" alert-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <textarea class="summernote" asp-for="Contents">Contents</textarea>
+                    <input type="text" class="form-control mb-3" asp-for="Contents" placeholder="Enter Contents">
+                    <span asp-validation-for="Contents" class=" alert-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Images">Images</label>
+                    <input name="fThumb" type="file" asp-for="Images" class="form-control" />
+                    <span asp-validation-for="Images" class=" alert-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Link">Link</label>
+                    <input type="text" class="form-control mb-3" asp-for="Link" placeholder="Enter Link">
+                    <span asp-validation-for="Link" class=" alert-danger"></span>
+                </div>
+
+
+                <div class="form-group col-md-6">
+                    <label asp-for="PostOrder">PostOrder</label>
+                    <input type="text" class="form-control mb-3" asp-for="PostOrder" placeholder="Enter PostOrder">
+                    <span asp-validation-for="PostOrder" class=" alert-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Category">Category</label>
+                    <input type="text" class="form-control mb-3" asp-for="Category" placeholder="Enter Category">
+                    <span asp-validation-for="Category" class=" alert-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Status">Status</label>
+                    <input type="text" class="form-control mb-3" asp-for="Status" placeholder="Enter Status">
+                    <span asp-validation-for="Status" class=" alert-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="MenuID">MenuID</label>
+                    <input type="text" class="form-control mb-3" asp-for="MenuID" placeholder="Enter Link">
+                    <span asp-validation-for="MenuID" class=" alert-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Author">Author</label>
+                    <input type="text" class="form-control mb-3" asp-for="Author" placeholder="Enter Author">
+                    <span asp-validation-for="Author" class=" alert-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="CreatedDate">CreatedDate</label>
+                    <input type="text" class="form-control mb-3" asp-for="CreatedDate" placeholder="Enter CreatedDate">
+                    <span asp-validation-for="CreatedDate" class=" alert-danger"></span>
+                </div>
+                <div class="tox-form-group--maximize mt-5 mb-5">
+                    <label>
+                        @Html.CheckBox("IsActive",false)
+                        Hiển thị
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary p-2"><i class="bi bi-file-plus-fill"></i>Lưu</button>
+            <a asp-asp-controller="Post" asp-action="Index" class="btn btn-lg btn-warning p-2"> Quay lại</a>
+        </form>
+    </div>
+</main>
+
+@section Scripts{
+    <script src="~/Adminassets/vendors/select2/select2.min.js"></script>
+    <script src="~/Adminassets/js/pages/e-commerce-product-edit.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="~/Adminassets/summernote/summernote-bs4.js"></script>
+
+    <script>
+
+        jQuery(document).ready(function () {
+            $('.summernote').summernote({
+                fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                height: 200,
+                minHeight: null,
+                maxHeight: null,
+                focus: true
+            });
+        });
+    </script>
+}

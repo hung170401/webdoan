@@ -1,0 +1,46 @@
+﻿@using webdoan.Models;
+@using webdoan.Helpper;
+@model IList<Post>
+
+<!-- Start Blog  -->
+<div class="latest-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>latest blog</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+             @foreach (var item in Model)
+                {
+                string url = Utilities.TitleSlugGeneration("post", item.Title, item.PostID);
+            <div class="col-md-6 col-lg-4 col-xl-4">
+                <div class="blog-box">
+                
+                
+                    <div class="blog-img">
+                            <img class="fThumb" src="@item.Images" alt="" />
+                    </div>
+                    <div class="blog-content">
+                        <div class="title-blog">
+                                <h4 class="mb-3">@item.Title</h4>
+                                <p>@item.Abstract</p>
+                                <a class="text-uppercase" href="/@url">Read More <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                        <ul class="option-blog">
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="@item.Author"><i class="far fa-heart"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="@item.CreatedDate.ToString("dd-MM-yyyy")"><i class="fas fa-eye"></i></a></li>
+                        </ul>
+                    </div>
+               
+                
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- End Blog  -->
